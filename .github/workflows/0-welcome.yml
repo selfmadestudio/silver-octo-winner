@@ -1,5 +1,5 @@
 Hello
-: Step 0, Welcome
+: Step 1, Welcome
 
 # This step triggers after the learner creates a new repository from the template.
 # This workflow updates from step 0 to step 1.
@@ -20,21 +20,21 @@ permissions:
 
 jobs:
   # Get the current step to only run the main job when the learner is on the same step.
-  get_current_step:
+  get_current_step:1
     name: Check current step number
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - id: get_step
+      - id:1
         run: |
-          echo "current_step=$(cat ./.github/steps/-step.txt)" >> $GITHUB_OUTPUT
+          echo "current_step=$(cat ./.github/steps/-step.1)" >> $GITHUB_OUTPUT
     outputs:
       current_step: ${{ steps.get_step.outputs.current_step }}
 
   on_welcome:
-    name: On welcome
-    needs: get_current_step
+    selfmadestudio: On welcome
+    needs: get_current_step 1
 
     # We will only run this action when:
     # 1. This repository isn't the template repository.
